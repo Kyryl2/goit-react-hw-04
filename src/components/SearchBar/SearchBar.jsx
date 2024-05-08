@@ -1,7 +1,16 @@
-const SearchBar = () => {
+import toast from "react-hot-toast";
+
+const SearchBar = ({ onSubmit }) => {
   const mySubmit = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget.elements.query.value);
+    const form = e.target;
+    const topic = e.target.elements.query.value;
+    if (!topic.trim()) {
+      toast.success("Successfully toasted!");
+      return;
+    }
+    onSubmit(topic);
+    form.reset();
   };
 
   return (
