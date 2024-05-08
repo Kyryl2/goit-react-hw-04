@@ -1,6 +1,7 @@
 const SearchBar = () => {
   const mySubmit = (e) => {
     e.preventDefault();
+    console.log(e.currentTarget.elements.query.value);
   };
 
   return (
@@ -11,7 +12,7 @@ const SearchBar = () => {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          //   name="query"
+          name="query"
         />
         <button type="submit">Search</button>
       </form>
