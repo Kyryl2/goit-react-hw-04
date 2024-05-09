@@ -34,7 +34,6 @@ const App = () => {
           setTotal(total_pages);
           setLoadMore(true);
         } else {
-          setLoadMore(true);
           setError(true);
         }
       } catch (error) {
