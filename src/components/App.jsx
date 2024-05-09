@@ -34,8 +34,9 @@ const App = () => {
           setTotal(total_pages);
           setLoadMore(true);
         }
+        console.log(error);
       } catch (error) {
-        setError(false);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -89,7 +90,7 @@ const App = () => {
     <div>
       <SearchBar onSubmit={handleSearch} />
 
-      {error && <ErrorMessage />}
+      {value && error && <ErrorMessage />}
       {photos.length > 0 && (
         <ImageGallery items={photos} setBig={setBig} onBig={handleImageClick} />
       )}
