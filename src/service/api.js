@@ -16,7 +16,7 @@ const fetchData = async (searchQuery, page) => {
       });
       return data;
     } catch (error) {
-      console.log(error);
+      error.message;
     }
   }
 };
