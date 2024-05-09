@@ -6,10 +6,11 @@ import ImageGallery from "./ImageGallery/ImageGallery";
 import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadmoreBtn/LoadMoreBtn";
-let page = 1;
+
 const App = () => {
   const [value, setValue] = useState("");
   const [photos, setPhotos] = useState("");
+  const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const App = () => {
       setPhotos([]);
       setError(false);
       setLoading(true);
-
+      setPage(2);
       const {
         data: { results },
       } = await fetchData(query, page);
@@ -37,7 +38,7 @@ const App = () => {
   };
 
   const handleClick = async () => {
-    page = page + 1;
+    setPage((prev) => prev + 1);
 
     const ddata = await fetchData(value, page);
     // setPhotos((prev) => {
