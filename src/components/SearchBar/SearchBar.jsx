@@ -1,12 +1,14 @@
-import toast from "react-hot-toast";
-
+import toast, { Toaster } from "react-hot-toast";
+import s from "./SearchBar.module.css";
 const SearchBar = ({ onSubmit }) => {
   const mySubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const topic = e.target.elements.query.value;
+    const topic = e.target.elements.query.value.trim();
     if (!topic.trim()) {
-      toast.success("Successfully toasted!");
+      toast.error("Будь ласка, введіть, що хочете знайти", {
+        position: "top-right",
+      });
       return;
     }
     onSubmit(topic);
@@ -14,8 +16,9 @@ const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <header>
-      <form onSubmit={mySubmit}>
+    <header className={s.header}>
+      <Toaster />
+      <form onSubmit={mySubmit} className={s.form}>
         <input
           type="text"
           autoComplete="off"

@@ -1,39 +1,38 @@
-import { useEffect } from "react";
-
+import Modal from "react-modal";
 import s from "./ImageModal.module.css";
-const ImageModal = ({ children, title = "Default modal", onClose }) => {
-  const handleBackDropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+const customStyles = {
+  overlay: {
+    backgroundColor: "#575757",
+  },
+  content: {
+    width: "80%",
+    height: "80%",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    padding: 0,
+    border: "none",
+    borderRadius: 0,
+    overflow: "hidden",
+  },
+};
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
+Modal.setAppElement("#root");
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onClose]);
+function ImageModal({ onOpen, onClose, big }) {
   return (
-    <div className={s.wrapper} onClick={handleBackDropClick}>
-      <div className={s.content}>
-        <>
-          <h1>{title}</h1>
-          <hr />
-        </>
-        <button className={s.closeBtn} onClick={onClose}>
-          ×
-        </button>
-        {children}
-      </div>
+    <div>
+      <Modal
+        className={s.modal}
+        isOpen={onOpen}
+        onRequestClose={onClose}
+        style={customStyles}
+        overlayClassName={s.overlay}
+      >
+        <img src={big} alt="photo" className={s.img} />
+      </Modal>
     </div>
   );
-};
+}
 
 export default ImageModal;

@@ -1,8 +1,8 @@
 import s from "./ImageCard.module.css";
-const ImageCard = ({ src, alt, onClick, src_regular }) => {
+const ImageCard = ({ src, alt, src_regular }) => {
   return (
     <div className={s.wrapper}>
-      <img onClick={() => onClick(src_regular, alt)} src={src} alt={alt} />
+      <img src={src} alt={alt} className={s.img} />
     </div>
   );
 };

@@ -1,7 +1,4 @@
-import toast from "react-hot-toast";
-
 function ErrorMessage() {
-  toast.error("Error");
   return (
     <>
       <p style={{ display: "flex", justifyContent: "center" }}>
