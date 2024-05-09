@@ -7,9 +7,11 @@ const ImageGallery = ({ items, onBig }) => {
       {items.map((img) => (
         <li onClick={() => onBig(img)} className={s.item} key={img.id}>
           <ImageCard
+            onBig={onBig}
             src={img.urls.small}
             src_regular={img.urls.regular}
             alt={img.alt_description}
+            item={img}
           />
         </li>
       ))}

@@ -10,7 +10,7 @@ import ImageModal from "./ImageModal/ImageModal";
 
 const App = () => {
   const [value, setValue] = useState("");
-  const [photos, setPhotos] = useState("");
+  const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
 
@@ -96,7 +96,9 @@ const App = () => {
       {photos.length > 0 && (
         <ImageGallery items={photos} setBig={setBig} onBig={handleImageClick} />
       )}
-      {page < total && <LoadMoreBtn onClick={() => handleChangePage()} />}
+      {photos.length > 0 && page < total && (
+        <LoadMoreBtn onClick={() => handleChangePage()} />
+      )}
       {loading && <Loader />}
       {isModal && (
         <ImageModal big={big} onClose={onCloseModal} onOpen={onOpenModal} />
