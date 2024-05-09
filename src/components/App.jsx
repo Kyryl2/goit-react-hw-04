@@ -28,12 +28,14 @@ const App = () => {
 
         const {
           data: { results, total_pages },
-        } = value && (await fetchData(value, page));
-        results.length && setPhotos((prev) => [...prev, ...results]);
-        setTotal(total_pages);
-        setLoadMore(true);
-      } catch (err) {
-        setError(true);
+        } = await fetchData(value, page);
+        if (results.length) {
+          setPhotos((prev) => [...prev, ...results]);
+          setTotal(total_pages);
+          setLoadMore(true);
+        }
+      } catch (error) {
+        setError(false);
       } finally {
         setLoading(false);
       }
