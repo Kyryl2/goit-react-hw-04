@@ -6,6 +6,7 @@ import ImageGallery from "./ImageGallery/ImageGallery";
 import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadmoreBtn/LoadMoreBtn";
+import ImageModal from "./ImageModal/ImageModal";
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -45,8 +46,12 @@ const App = () => {
     //   [...prev, ...ddata.data.results];
     // });
     setPhotos([...photos, ...ddata.data.results]);
-
-    console.log(photos);
+  };
+  const onCloseModal = () => {
+    setIsModal(false);
+  };
+  const onOpenModal = () => {
+    setIsModal(true);
   };
 
   return (
@@ -54,8 +59,9 @@ const App = () => {
       <SearchBar onSubmit={handleSearch} />
       {loading && <Loader />}
       {error && <ErrorMessage />}
-      {submit && <ImageGallery items={photos} />}
+      {submit && <ImageGallery items={photos} onOpen={onOpenModal} />}
       {photos && <LoadMoreBtn onClick={() => handleClick()} />}
+      {isModal && <ImageModal onClose={onCloseModal} />}
     </div>
   );
 };
