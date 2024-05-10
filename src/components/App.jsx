@@ -21,6 +21,9 @@ const App = () => {
   const [total, setTotal] = useState("");
 
   useEffect(() => {
+    if (!value) {
+      return;
+    }
     const getData = async () => {
       try {
         setLoading(true);
@@ -90,9 +93,7 @@ const App = () => {
   return (
     <div>
       <SearchBar onSubmit={handleSearch} />
-
-      {value && error && <ErrorMessage />}
-
+      {error && <ErrorMessage />}
       {photos.length > 0 && (
         <ImageGallery items={photos} setBig={setBig} onBig={handleImageClick} />
       )}
